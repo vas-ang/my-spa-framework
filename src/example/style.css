@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    background-color: deepskyblue;
+}
+
+nav {
+    display: block;
+    background-color: ghostwhite;
+    padding: 0.5%;
+    border-radius: 0 0 10% 10%;
+    animation: 500ms ease-out 0s 1 navDrop;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.btn {
+    display: inline-block;
+    text-align: center;
+    margin: 0 0.5rem 0 0;
+    padding: 0.2rem;
+    color: crimson;
+    background-color: ghostwhite;
+    font-family: cursive;
+    border: 0.2rem solid;
+    border-color: deepskyblue;
+    border-radius: 0.5rem;
+}
+
+a.btn:hover {
+    background-color: deepskyblue;
+    border-color: ghostwhite;
+    color: crimson;
+    cursor: pointer;
+}
+
+a.btn:active {
+    background-color: deepskyblue;
+    border-color: ghostwhite;
+    color: crimson;
+    cursor: pointer;
+}
+
+a.btn.selected {
+    background-color: crimson;
+    color: ghostwhite;
+}
+
+
+a.btn.selected:hover {
+    background-color: crimson;
+    color: ghostwhite;
+    border-color: deepskyblue;
+    cursor: default;
+}
+
+.logo {
+    display: inline-block;
+    color: crimson;
+    font-weight: bolder;
+    font-family: cursive;
+    text-align: center;
+    margin: 0 1rem;
+}
+
+.form {
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: ghostwhite;
+    font-family: cursive;
+}
+
+input {
+    display: block;
+    font-size: large;
+    font-family: cursive;
+    color: crimson;
+    background-color: ghostwhite;
+    border-radius: 0.5rem;
+    border: 0;
+    margin: 1% auto;
+    width: 100%;
+}
+
+input:focus {
+    outline-width: 0;
+}
+
+input.btn {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    color: crimson;
+    background-color: ghostwhite;
+    border: 0.2rem solid ghostwhite;
+}
+
+input.btn:hover {
+    border-color: crimson;
+    background-color: crimson;
+    color: white;
+    cursor: pointer;
+}
+
+#main {
+    display: block;
+    margin: 1% auto;
+    width: 50%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0.5%;
+    background: ghostwhite;
+    color: crimson;
+    font-weight: bold;
+    font-family: cursive;    
+    animation: 500ms ease-out 0s 1 footerClimb;
+}
+
+@keyframes navDrop {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    33% {
+        transform: translateY(-33%);
+    }
+
+    75% {
+        transform: translateY(-12.5%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes footerClimb {
+    0% {
+        transform: translateY(100%);
+    }
+
+    33% {
+        transform: translateY(33%);
+    }
+
+    75% {
+        transform: translateY(12.5%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
