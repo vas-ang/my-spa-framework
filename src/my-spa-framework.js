@@ -7,7 +7,7 @@ export function SPA(containerQuery, registerCallback) {
 
   const registeredRoutes = {
     GET: [],
-    POST: []
+    POST: [],
   };
 
   function preventRedirects(appendClickEvent) {
@@ -23,16 +23,8 @@ export function SPA(containerQuery, registerCallback) {
     const targetType = e.currentTarget.nodeName;
 
     let method, route;
-
-    if (targetType === "A" || targetType === "BUTTON") {
-      method = "GET";
-      route = e.currentTarget.pathname;
-
-      if (route === window.location.pathname) {
-        return;
-      }
-    } else if (
-      targetType === "INPUT" &&
+    if (
+      (targetType === "INPUT" || targetType === "BUTTON") &&
       e.currentTarget.type.toLocaleLowerCase() === "submit"
     ) {
       let formElement = e.currentTarget.parentElement;
@@ -51,17 +43,22 @@ export function SPA(containerQuery, registerCallback) {
         formElement.querySelectorAll("input")
       ).filter((x) => x.type.toLocaleLowerCase() !== "submit");
 
-      if (inputFields.length > 0) {
-        if (action.search === "") {
-          action.search += "?";
+      for (const input of inputFields) {
+        if (action.search !== "") {
+          action.search += "&";
         }
 
-        for (const input of inputFields) {
-          action.search += `${input.name}=${input.value}`;
-        }
+        action.search += `${input.name}=${input.value}`;
       }
 
       route = `${action.pathname}${action.search}${action.hash}`;
+    } else if (targetType === "A" || targetType === "BUTTON") {
+      method = "GET";
+      route = e.currentTarget.pathname;
+
+      if (route === window.location.pathname) {
+        return;
+      }
     }
 
     history.pushState({ method, route }, "", route);
@@ -107,7 +104,7 @@ export function SPA(containerQuery, registerCallback) {
 
     if (queryParams !== undefined) {
       formattedQueryParams = Array.from(
-        queryParams.matchAll(/(?<key>[^=]+)=(?<value>[^&]+)/g)
+        queryParams.matchAll(/(?<key>[^&=]+)=(?<value>[^&]+)/g)
       ).reduce(function (acc, cur) {
         acc[cur.groups.key] = cur.groups.value;
 
